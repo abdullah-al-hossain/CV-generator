@@ -1,0 +1,150 @@
+<div class="row justify-content-center">
+    <div class="col-md-12 col-lg-8">
+
+        <div class="card" style="background: #DA4453;background: -webkit-linear-gradient(to right, #89216B, #DA4453);
+        background: linear-gradient(to right, #89216B, #DA4453);">
+            <div class="card-header"><strong style="color: #fff;">Get started on creating your <mark style="color: red; font-family: Notable;">CV!</mark></strong></div>
+
+            <div class="card-body" style="background: #ad5389; background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+            background: linear-gradient(to right, #3c1053, #ad5389);">
+                <div id="accordion">
+                  <form action="{{ route('cv.store') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card">
+                      <div class="card-header" id="headingZero">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link d-block" data-toggle="collapse" data-target="#collapseZero" aria-expanded="true" aria-controls="collapseZero">
+                            <span style="font-family: 'IBM Plex Sans';">Personal info</span>
+                          </a>
+                        </h5>
+                      </div>
+
+                      <div id="collapseZero" class="collapse show" aria-labelledby="headingZero" data-parent="#accordion">
+                        <div class="card-body">
+                          <input class="form-control mb-2" type="text" name="name" placeholder="Enter your full name" >
+                          <input class="form-control mb-2" type="text" name="address" placeholder="Enter your address" >
+                          <input class="form-control mb-2" type="email" name="email" placeholder="Enter your email" >
+                          <input type="hidden" name="uid" value="{{ Auth::user()->id }}">
+                          <p style="font-family: Notable; font-weight: 550;" class="ml-2">Enter your contact number/numbers</p>
+                          <input class="form-control" type="text" name="mobile" placeholder="Enter your mobile number" >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link collapsed  d-block" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <span style="font-family: 'IBM Plex Sans';">CV Image</span>
+                          </a>
+                        </h5>
+                      </div>
+
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                           <input type="file" name="image" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link collapsed  d-block" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <span style="font-family: 'IBM Plex Sans';">Career objective</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                          <textarea style="resize: none;" name="carObj" rows="5" class="form-control" placeholder="Write few lines about your career objective . . ." ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link collapsed  d-block" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <span style="font-family: 'IBM Plex Sans';">Project Accomplishment</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                          <mark><strong>Write about your projects with project name and details.</strong></mark><br><br>
+                          <table class="table table-bordered table-striped" id="user_table">
+                            <thead>
+                             <tr>
+                                 <th width="30%">Name of Project</th>
+                                 <th width="50%">Details</th>
+                                 <th width="25%">Action</th>
+                             </tr>
+                            </thead>
+                            <tbody id="projects">
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link collapsed  d-block" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <span style="font-family: 'IBM Plex Sans';">Educational Background</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                          <div class="table-responsive">
+                            <table class="table table-bordered table-striped" id="user_table">
+                              <thead>
+                               <tr>
+                                   <th width="15%">Name of Degree</th>
+                                   <th width="40%">Institution</th>
+                                   <th width="5%">GPA/CGPA</th>
+                                   <th width="18%">Time Period</th>
+                                   <th width="22%">Action</th>
+                               </tr>
+                              </thead>
+                              <tbody id="educations">
+
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingFive">
+                        <h5 class="mb-0">
+                          <a class="btn btn-link collapsed  d-block" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <span style="font-family: 'IBM Plex Sans';">Skills</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                        <div class="card-body">
+                          Enter the things you are <strong>skilled at</strong>. <br>
+                          <table class="table table-bordered table-striped" id="user_table">
+                            <thead>
+                             <tr>
+                                 <th width="30%">Skilled In</th>
+                                 <th width="50%">Details</th>
+                                 <th width="25%">Action</th>
+                             </tr>
+                            </thead>
+                            <tbody id="skills">
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-md btn-primary mt-2 form-control">Generate your CV!</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
