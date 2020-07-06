@@ -147,30 +147,12 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Mobile</th>
-                  <th>Address</th>
-                  <th>Card Number</th>
-                  <th>Postal/Zip no.</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody id="application">
-
-              </tbody>
-              <tfoot>
-
-              </tfoot>
-            </table>
+          <div class="table-responsive" id="application">
+            
           </div>
         </div>
         <div class="loader">
-          <img src="/images/abc.gif" alt="" style="width: 150px; height: 150px;">
+          <img src="{{asset('/images/abc.gif')}}" alt="" style="width: 150px; height: 150px;">
         </div>
       </div>
     </div>
@@ -346,35 +328,7 @@ $(document).ready(function(){
   			type:"GET",
   			success:function(data)
   			{
-          var value = JSON.parse(data);
-          var html1 = '';
-          var html = '';
-          if(value != null) {
-            html1 = `
-              <tr>
-                <td>${value.name}</td>
-                <td>${value.email}</td>
-                <td>${value.phone}</td>
-                <td>${value.address}</td>
-                <td>${value.card}</td>
-                <td>${value.zip}</td>
-                <td style='text-transform: uppercase;'>${value.gender}</td>
-              </tr>
-            `;
-          } else {
-            html1 = `
-              <tr>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-              </tr>
-            `;
-          }
-  				$('#application').html(html1);
+  				$('#application').html(data);
   			},
         error: function (request, status, error) {
           alert(request.responseText);

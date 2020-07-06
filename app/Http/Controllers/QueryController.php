@@ -42,9 +42,10 @@ class QueryController extends Controller
   }
 
   public function fetch() {
-    $app = Query::latest()->first();
-    $grads = $app->debts;
-    $app->grads = $grads;
-    return json_encode($app);
+    $apps = Query::latest()->get();
+    //$grads = $app->debts;
+    //$app->grads = $grads;
+    // return json_encode($app);
+    return view('partials.application_view', compact('apps'));
   }
 }

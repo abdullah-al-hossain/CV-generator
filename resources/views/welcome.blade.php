@@ -77,6 +77,18 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .fa-plus {
+              -webkit-animation:spin 2s linear infinite;
+              -moz-animation:spin 2s linear infinite;
+              animation:spin 2s linear infinite;
+            }
+
+            @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+            @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+            @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+
         </style>
     </head>
     <body>
@@ -106,6 +118,7 @@
                     <a href="{{ route('cv.create') }}" style="border: 1px solid #ccc; border-radius: 3px; font-size: 20px;">
                       <i class="fa fa-plus"></i>
                       Create CV
+                      <i class="fa fa-plus"></i>
                     </a>
                   @endif
                   @if(!$user_cv == null)
