@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Query;
 use App\Debt;
+use Auth;
 
 class QueryController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth');
+  }
+
   public function index() {
     return view('jquery');
   }
@@ -19,6 +24,7 @@ class QueryController extends Controller
 
      $query = new Query();
      $query->name = $request->name;
+     $query->user_id = $request->uid;
      $query->email = $request->email;
      $query->address = $request->address;
      $query->phone = $request->phone;
@@ -41,8 +47,8 @@ class QueryController extends Controller
      return response()->json(['success'=>'Data is successfully added']);
   }
 
-  public function fetch() {
-    $apps = Query::latest()->get();
+  public function fetch(Request $request) {
+    $apps = Auth::user()->queries;
     //$grads = $app->debts;
     //$app->grads = $grads;
     // return json_encode($app);

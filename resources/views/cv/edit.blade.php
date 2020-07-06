@@ -79,10 +79,12 @@
                 <label class="custom-file-label">
                   <input type="file" onchange="showImage.call(this)" class="custom-file-input" name="image">
                   <input type="hidden" name="existingImage" value="{{ $userPersonalInfo->image }}">
+                  <span class="custom-file-name">Choose file</span>
                 </label>
               </div>
               <img src="{{ asset('/images/'.$userPersonalInfo->image) }}" class="pt-2 rounded-circle mx-auto my-3" style="display: block; height:150px; width: 150px;"  id="image">
             </div>
+
             <div class="form-group">
               <label>Career objective</label>
               <textarea name="carObj" class="form-control resize-off" rows="3">{{ $userPersonalInfo->carObj }}</textarea>

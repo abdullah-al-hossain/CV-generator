@@ -37,7 +37,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     // Relationships
     public function cv() {
       return $this->hasOne(Cv::class);
@@ -55,8 +54,20 @@ class User extends Authenticatable
       return $this->hasMany(Skill::class);
     }
 
+    public function queries() {
+      return $this->hasMany(Query::class);
+    }
+
     public function sociallogin() {
       return $this->hasOne(SocialLogin::class);
+    }
+
+    public function auctions() {
+      return $this->hasMany(Auction::class);
+    }
+
+    public function bidders() {
+      return $this->hasMany(Bidder::class);
     }
 
 }

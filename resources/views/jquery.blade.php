@@ -34,6 +34,7 @@
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" name="name" id="name" class="form-control name">
+              <input type="hidden" name="uid" value="{{ Auth::user()->id }}" id="uid">
               <p><span class="nameerror hidden">Please Enter a Valid Name</span></p>
             </div>
 
@@ -148,7 +149,7 @@
         </div>
         <div class="card-body">
           <div class="table-responsive" id="application">
-            
+
           </div>
         </div>
         <div class="loader">
@@ -173,7 +174,7 @@ $(document).ready(function(){
     var checkbox = 0;
     var price = parseFloat($('.price').data('price'));
     var symbol = $('.price').data('symbol');
-    var pay = 6000;
+    var pay;
 
     function validate_name($elem) {
       var bool = false;
@@ -326,6 +327,9 @@ $(document).ready(function(){
   		$.ajax({
   			url:"{{route('jquery.fetch')}}",
   			type:"GET",
+        data: {
+          uid: $('#uid').val()
+        },
   			success:function(data)
   			{
   				$('#application').html(data);
@@ -381,6 +385,7 @@ $(document).ready(function(){
         data: {
            _token: $('meta[name="csrf-token"]').attr('content'),
            name: $('.name').val(),
+           uid: $('#uid').val(),
            email: $('.email').val(),
            phone: $('.mobile').val(),
            address: $('.address').val(),

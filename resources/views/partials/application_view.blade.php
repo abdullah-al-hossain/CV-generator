@@ -6,6 +6,7 @@
       <th>Mobile</th>
       <th>Address</th>
       <th>Card Number</th>
+      <th>Price</th>
       <th>Postal/Zip no.</th>
       <th>Gender</th>
     </tr>
@@ -19,12 +20,14 @@
       <td>{{$app->phone}}</td>
       <td>{{$app->address}}</td>
       <td>{{$app->card}}</td>
+      <td>{{$app->price}}</td>
       <td>{{$app->zip}}</td>
       <td style='text-transform: uppercase;'>{{$app->gender}}</td>
     </tr>
     @endforeach
     @else
     <tr>
+      <td>N/A</td>
       <td>N/A</td>
       <td>N/A</td>
       <td>N/A</td>

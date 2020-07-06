@@ -1,5 +1,4 @@
 <?php
-use App\CV;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,3 +37,9 @@ Route::get('/dynamic_pdf/pdf/{uid}', 'DynamicPDFController@pdf')->name('pdf.down
 Route::get('/jquery', 'QueryController@index');
 Route::post('/jquery/post', 'QueryController@store')->name('jquery.post');
 Route::get('/jquery/fetch', 'QueryController@fetch')->name('jquery.fetch');
+
+
+Route::get('/bid','BidController@index');
+Route::get('/bid/{id}','BidController@show')->name('bid.show');
+Route::get('/bidlatest','BidController@shownew')->name('bid.shownew');
+Route::post('/bid','BidController@store')->name('bid.new');

@@ -27,11 +27,10 @@
 	<link rel="stylesheet" href="{{ URL::to('assets/css/vendors.css') }}">
 
 	<!-- aiz core css -->
-	<link rel="stylesheet" href="assets/css/aiz-core.css">
+	<link rel="stylesheet" href="{{asset('assets/css/aiz-core.css')}}">
 
 
   <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
 
 	<script>
     	var AIZ = AIZ || {};
@@ -109,5 +108,7 @@
         </main>
     </div>
   </div>
+	<script src="{{ asset('assets/js/vendors.js') }}" ></script>
+	<script src="{{ asset('assets/js/aiz-core.js') }}" ></script>
 </body>
 </html>

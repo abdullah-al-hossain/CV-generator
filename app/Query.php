@@ -22,4 +22,8 @@ class Query extends Model
     public function debts() {
       return $this->hasMany(Debt::class);
     }
+
+    public function user() {
+      return $this->belongsTo(User::class);
+    }
 }
