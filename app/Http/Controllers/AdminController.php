@@ -20,7 +20,6 @@ class AdminController extends Controller
     }
 
     public function login() {
-
       if(Auth::check()) {
         if(auth()->user()->is_admin == 1){
           return redirect()->route('admin.index');

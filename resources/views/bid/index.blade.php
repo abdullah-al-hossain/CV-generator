@@ -9,13 +9,14 @@
           <span class="h5 py-0">Biddings of the going on</span>
         </div>
         <div class="card-body">
-          @php
-            $product = \App\Product::first();
-            $auctions = $product->auctions;
-          @endphp
-
           @foreach($auctions as $auction)
-            <p><a href="{{route('bid.show', [ 'id' => $auction->id ])}}">{{ $auction->product->product_name }} (Starts at {{ Carbon\Carbon::parse($auction->bid_start)->diffForHumans() }})</a> </p>            
+          <p>
+            <a href="{{route('bid.show', [ 'id' => $auction->id ])}}">
+              <img src="{{ asset('images/images.jfif') }}" alt="image" width="40">
+              {{ $auction->product->name }}
+              ({{ Carbon\Carbon::parse($auction->bid_start)->diffForHumans() }})
+            </a>
+          </p>
           @endforeach
         </div>
       </div>

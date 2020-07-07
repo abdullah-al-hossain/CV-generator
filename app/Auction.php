@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Auction extends Model
 {
@@ -18,5 +19,19 @@ class Auction extends Model
 
   public function bidders() {
     return $this->hasMany(Bidder::class);
+  }
+
+  public function winner() {
+    return $this->hasOne(Winner::class);
+  }
+
+  public function auctionStartDate()
+  {
+    return Carbon::parse($this->bid_start)->diffForHumans(); // Parse korte vule gesilam onk jhamela hysilo. Always Parse dates before using methods
+  }
+
+  public function auctionEndDate()
+  {
+    return Carbon::parse($this->bid_end)->diffForHumans(); // Parse korte vule gesilam onk jhamela hysilo. Always Parse dates before using methods
   }
 }

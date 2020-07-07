@@ -5,7 +5,9 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::resource('cv', 'CvController');
-Route::get('/my-cv', 'CvController@show');
+Route::resource('product', 'ProductController');
+Route::resource('auction', 'AuctionController');
+// Route::get('/my-cv', 'CvController@show');
 
 // Facebook login
 Route::get('/facebook/redirect', 'SocialAuthController@redirect');
@@ -30,16 +32,18 @@ Route::get('/adminlogin', 'AdminController@login')->name('admin.login');
 Route::get('/admin', 'AdminController@index')->name('admin.index')->middleware('admin');
 
 // Pdf creator RouteServiceProvider
-Route::get('/dynamic_pdf/{uid}', 'DynamicPDFController@index')->name('pdf');
-Route::get('/dynamic_pdf/pdf/{uid}', 'DynamicPDFController@pdf')->name('pdf.download');
+Route::get('/dynamic-pdf/{uid}', 'DynamicPDFController@index')->name('pdf');
+Route::get('/dynamic-pdf/pdf/{uid}', 'DynamicPDFController@pdf')->name('pdf.download');
 
 // jquery
-Route::get('/jquery', 'QueryController@index');
-Route::post('/jquery/post', 'QueryController@store')->name('jquery.post');
-Route::get('/jquery/fetch', 'QueryController@fetch')->name('jquery.fetch');
+Route::get('/application', 'QueryController@index');
+Route::post('/application/post', 'QueryController@store')->name('jquery.post');
+Route::get('/application/fetch', 'QueryController@fetch')->name('jquery.fetch');
 
 
 Route::get('/bid','BidController@index');
 Route::get('/bid/{id}','BidController@show')->name('bid.show');
-Route::get('/bidlatest','BidController@shownew')->name('bid.shownew');
+Route::get('/bid-latest','BidController@shownew')->name('bid.shownew');
+Route::get('/show-winner','BidController@show_winner')->name('show.winner');
 Route::post('/bid','BidController@store')->name('bid.new');
+Route::post('/bid-winner','BidController@winner')->name('bid.winner');

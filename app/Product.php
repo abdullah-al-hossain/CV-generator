@@ -11,4 +11,5 @@ class Product extends Model
     public function auctions() {
       return $this->hasMany(Auction::class);
     }
+
 }

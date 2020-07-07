@@ -35,6 +35,7 @@ class DynamicPDFController extends Controller
      return $customer_data;
     }
 
+    // This function downloads the CV as a pdf
     function pdf($uid)
     {
       $customer_data = $this->get_customer_data();
@@ -46,15 +47,6 @@ class DynamicPDFController extends Controller
       $eduInfo = Education::where('user_id', $uid)->get();
       $skillInfo = Skill::where('user_id', $uid)->get();
 
-      //dd($skillInfo);
-
-      // $pdf = PDF::setOptions([
-      //                 'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true,
-      //                 'logOutputFile' => storage_path('logs/log.htm'),
-      //                 'tempDir' => storage_path('logs/')
-      //             ])->loadView('dynamic_pdf', compact('customer_data'));
-      //
-      // return $pdf->download('order-'.Auth::user()->name.'.pdf');
 
       $pdf = PDF::setOptions([
                       'isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true,

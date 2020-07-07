@@ -14,10 +14,10 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
 
 	<!-- vendors css -->
-	<link rel="stylesheet" href="assets/css/vendors.css">
+	<link rel="stylesheet" href=" {{ asset('assets/css/vendors.css') }}">
 
 	<!-- aiz core css -->
-	<link rel="stylesheet" href="assets/css/aiz-core.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/aiz-core.css') }}">
 
 	<script>
     	var AIZ = AIZ || {};
@@ -32,7 +32,7 @@
 			<div class="aiz-sidebar left c-scrollbar">
 				<div class="aiz-side-nav-logo-wrap">
 					<a href="{{ route('admin.index') }}" class="d-block">
-						<img src="assets/img/logo-light.png" class="img-fluid">
+						<img src="{{ asset('assets/img/logo-light.png') }}" class="img-fluid">
 					</a>
 				</div>
 				<div class="aiz-side-nav-wrap">
@@ -161,7 +161,7 @@
 					</div>
 					<div class="aiz-topbar-logo-wrap d-flex align-items-center justify-content-start">
 						<a href="index.html" class="d-block">
-							<img src="assets/img/logo.png" class="img-fluid" height="45">
+							<img src=" {{ asset('assets/img/logo.png') }}" class="img-fluid" height="45">
 						</a>
 					</div>
 				</div>
@@ -184,14 +184,14 @@
 		                        	</span>
 		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-animated dropdown-menu-md">
-		                            <a href="javascript:void(0);" class="dropdown-item text-capitalize">
-		                                <i class="las la-user"></i>
-		                                <span>Add New Customer</span>
-		                            </a>
-
-		                            <a href="javascript:void(0);" class="dropdown-item text-capitalize">
+		                            <a href="{{ route('product.create') }}" class="dropdown-item text-capitalize">
 		                                <i class="las la-sign-out-alt"></i>
 		                                <span>Add New Product</span>
+		                            </a>
+
+																<a href="{{ route('auction.create') }}" class="dropdown-item text-capitalize">
+		                                <i class="las la-sign-out-alt"></i>
+		                                <span>Add New Auction</span>
 		                            </a>
 		                        </div>
 		                    </div>
@@ -207,12 +207,12 @@
 		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-xs">
 		                            <a href="javascript:void(0);" class="dropdown-item">
-		                                <img src="assets/img/flags/en.png" height="11">
+		                                <img src="{{ asset('assets/img/flags/en.png') }}" height="11">
 		                                <span class="ml-2">English</span>
 		                            </a>
 
 		                            <a href="javascript:void(0);" class="dropdown-item">
-		                                <img src="assets/img/flags/en.png" height="11">
+		                                <img src="{{ asset('assets/img/flags/en.png') }}" height="11">
 		                                <span class="ml-2">English</span>
 		                            </a>
 		                        </div>
@@ -222,17 +222,17 @@
 							<div class="align-items-stretch d-flex dropdown">
 		                        <a class="dropdown-toggle no-arrow" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
 		                        	<span class="btn btn-light">
-		                        		<img src="assets/img/flags/en.png" height="11">
+		                        		<img src="{{ asset('assets/img/flags/en.png') }}" height="11">
 		                        	</span>
 		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-xs">
 		                            <a href="javascript:void(0);" class="dropdown-item">
-		                                <img src="assets/img/flags/en.png" height="11">
+		                                <img src="{{ asset('assets/img/flags/en.png') }}" height="11">
 		                                <span class="ml-2">English</span>
 		                            </a>
 
 		                            <a href="javascript:void(0);" class="dropdown-item">
-		                                <img src="assets/img/flags/en.png" height="11">
+		                                <img src="{{ asset('assets/img/flags/en.png') }}" height="11">
 		                                <span class="ml-2">English</span>
 		                            </a>
 		                        </div>
@@ -243,16 +243,16 @@
 		                        <a class="dropdown-toggle no-arrow text-dark" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-haspopup="false" aria-expanded="false">
 		                        	<span class="d-flex align-items-center">
 			                            <span class="mr-md-2">
-			                                <img src="assets/img/avatar-place.png" alt="user-image" class="rounded-circle img-fluid" height="36" width="36">
+			                                <img src=" {{ asset('assets/img/avatar-place.png') }}" alt="user-image" class="rounded-circle img-fluid" height="36" width="36">
 			                            </span>
 			                            <span class="d-none d-md-block">
-			                                <span class="d-block fw-500">John Doe</span>
+			                                <span class="d-block fw-500">{{ Auth::user()->name }}</span>
 			                                <span class="d-block small opacity-60">Admin</span>
 			                            </span>
 		                            </span>
 		                        </a>
 		                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-menu-md">
-		                            <a href="javascript:void(0);" class="dropdown-item">
+		                            <a href="#" class="dropdown-item">
 		                                <i class="las la-user-circle"></i>
 		                                <span>My Account</span>
 		                            </a>
@@ -274,8 +274,7 @@
 
 			<div class="aiz-main-content">
 				<div class="px-15px px-lg-25px">
-					<h1 class="text-center">This is main</h1>
-          @yield('section')
+          @yield('content')
 				</div>
 			</div><!-- .aiz-main-content -->
 
@@ -283,7 +282,7 @@
 
 	</div><!-- .aiz-main-wrapper -->
 
-	<script src="assets/js/vendors.js" ></script>
-	<script src="assets/js/aiz-core.js" ></script>
+	<script src="{{ asset('assets/js/vendors.js') }}" ></script>
+	<script src="{{ asset('assets/js/aiz-core.js') }}" ></script>
 </body>
 </html>

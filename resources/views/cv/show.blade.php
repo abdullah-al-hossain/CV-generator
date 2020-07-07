@@ -55,7 +55,7 @@
 
             <div class="card">
                 <div class="card-header">
-                  <div class="row">
+                  <div class="row w-100">
                     <div class="col-md-4">
                       <img src="{{ URL::to('/images/'.$userPersonalInfo->image) }}" alt="CV image" style="height: 200px; width: 200px;" class="rounded-circle">
                     </div>

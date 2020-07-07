@@ -13,4 +13,5 @@ class Bidder extends Model
     public function auction() {
       return $this->belongsTo(Auction::class);
     }
+
 }
