@@ -8,7 +8,8 @@
         <div class="card-header">
           <span class="h5 py-0">Biddings of the going on</span>
         </div>
-        <div class="card-body">
+        <div class="card-body">          
+
           @foreach($auctions as $auction)
           <p>
             <a href="{{route('bid.show', [ 'id' => $auction->id ])}}">

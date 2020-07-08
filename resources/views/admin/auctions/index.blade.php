@@ -32,7 +32,7 @@
             <i class="fa fa-eye" aria-hidden="true"></i>
             View
           </a>
-          <a href="{{ route('auction.edit', ['auction' => $auction->id]) }}" class="btn btn-warning btn-sm">
+          <a href="#{{ route('auction.edit', ['auction' => $auction->id]) }}" class="btn btn-warning btn-sm">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             Edit
           </a>

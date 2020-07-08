@@ -230,11 +230,11 @@ $(".btnsub").on('click', function(e) {
   var distanceEnd = countDownDate1 - now;
 
   if (distance > 0 ) {
-    alert('The bidding has not started yet!');
+    AIZ.plugins.notify('primary','The bidding has not started yet!!');
     return;
   } else {
     if (distanceEnd < 0) {
-      alert('The bidding has ended!');
+      AIZ.plugins.notify('primary','The bidding has ended!!');
       return;
     }
   }
@@ -260,7 +260,7 @@ $(".btnsub").on('click', function(e) {
       AIZ.plugins.notify('danger',errorResponse.errors.bidPrice);
     },
     beforeSend: function(){
-      $('.loader').show();
+      // $('.loader').show();
     },
     complete: function(){
       $('.loader').hide();

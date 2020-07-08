@@ -8,6 +8,9 @@ use App\Auction;
 
 class ProductController extends Controller
 {
+    public function __construct() {
+      $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +41,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+          'name' => 'string|required',
+          'category' => 'string|required',
+          'description' => 'string|required',
+          'image' => 'image|required'
+        ]);
+
         $product = new Product();
         $product->name = $request->name;
         $product->category = $request->category;
@@ -90,6 +100,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $request->validate([
+          'name' => ['required', 'string'],
+          'category' => ['required', 'string'],
+          'description' => ['required', 'string'],
+          'image' => 'image'
+        ]);
+
         $product = Product::findOrFail($id);
         $product->name = $request->name;
         $product->category = $request->category;

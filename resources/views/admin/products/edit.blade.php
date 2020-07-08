@@ -5,6 +5,18 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
+      @if ($errors->any())
+          <div class="alert alert-danger fade show">
+              <ul style="margin: 0;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                  @foreach ($errors->all() as $error)
+                      <li>{!! $error !!}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
       <div class="card">
         <div class="card-header">
           <h5 class="mb-0 h6">Add new product . . .</h5>

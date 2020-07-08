@@ -52,6 +52,20 @@ class BidController extends Controller
 
     // This function stores the new bidded price // Done through Ajax call
     public function store(Request $request) {
+
+      $end_time = Carbon::parse(Auction::where('id', $request->aid)->first()->bid_end);
+      $start_time = Carbon::parse(Auction::where('id', $request->aid)->first()->bid_start);
+
+      if(date('Y-m-d H:i:s') > $end_time)
+      {
+        return 'Time\'s up!';
+      }
+
+      if(date('Y-m-d H:i:s') < $start_time)
+      {
+        return 'Event\'s not started yet!';
+      }
+      
       $auction = Auction::findOrFail($request->aid);
       $message = [
         'required' => "You must provide a bidding price!",
@@ -70,12 +84,6 @@ class BidController extends Controller
         return json_encode($msg);
       }
 
-      $end_time = Carbon::parse(Auction::where('id', $request->aid)->first()->bid_end);
-
-      if(date('Y-m-d H:i:s') > $end_time)
-      {
-        return 'Time\'s up!';
-      }
       $bid = new Bidder();
       $bid->auction_id = $request->aid;
       $bid->user_id = $request->uid;

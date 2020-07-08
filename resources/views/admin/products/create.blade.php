@@ -5,6 +5,18 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
+      @if ($errors->any())
+          <div class="alert alert-danger fade show">
+              <ul style="margin: 0;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                  @foreach ($errors->all() as $error)
+                      <li>{!! $error !!}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
       @if (session('prodEmpty'))
           <div class="alert alert-warning">
               {{ session('prodEmpty') }}
@@ -19,22 +31,22 @@
             @csrf
             <div class="form-group">
               <label>Product Name</label>
-              <input type="text" class="form-control" name="name" placeholder="Enter product name . . .">
+              <input type="text" class="form-control" name="name" placeholder="Enter product name . . ." required value="{{ old('name') }}">
             </div>
             <div class="form-group">
               <label>Product Category</label>
-              <input type="text" class="form-control" name="category" placeholder="Enter Category name . . .">
+              <input type="text" class="form-control" name="category" placeholder="Enter Category name . . ." required value="{{ old('category') }}">
             </div>
             <div class="form-group">
               <label>Product description</label>
-              <textarea name="description" class="form-control resize-off" rows="3" placeholder="Enter Product details . . ."></textarea>
+              <textarea name="description" class="form-control resize-off" rows="3" placeholder="Enter Product details . . ." required>{{ old('description') }}"</textarea>
             </div>
 
             <div class="form-group">
               <label>Image of product</label>
               <div class="custom-file custom-file-sm">
                 <label class="custom-file-label">
-                  <input type="file" onchange="showImage.call(this)" class="custom-file-input" name="image">
+                  <input type="file" onchange="showImage.call(this)" class="custom-file-input" name="image" required>
                 </label>
               </div>
               <img src="" class="pt-2 rounded m-auto" style="display: none; height:150px; width: 150px;"  id="image">

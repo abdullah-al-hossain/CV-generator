@@ -8,6 +8,9 @@ use App\Auction;
 
 class AuctionController extends Controller
 {
+    public function __construct() {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +46,16 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
+
+      $request->validate([
+        'price' => 'numeric|required',
+        'startdate' => 'string|required',
+        'starttime' => 'string|required',
+        'enddate' => 'string|required',
+        'endtime' => 'string|required',
+
+      ]);
+
       $auction = new Auction();
 
       $auction->product_id = $request->prod_id;

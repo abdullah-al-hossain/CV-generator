@@ -3,6 +3,20 @@
 
 @section('content')
 <div class="container">
+
+  @if ($errors->any())
+      <div class="alert alert-danger fade show">
+          <ul style="margin: 0;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+              @foreach ($errors->all() as $error)
+                  <li>{!! $error !!}</li>
+              @endforeach
+          </ul>
+      </div>
+  @endif
+
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
@@ -16,23 +30,23 @@
               <label>Select Product</label>
               <select class="form-control" name="prod_id">
                 @foreach($products as $product)
-                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                <option value="{{ $product->id }}" @if(old('prod_id') == $product->id) selected @endif>{{ $product->name }}</option>
                 @endforeach
               </select>
               <small class="form-text text-muted">Help text.</small>
             </div>
             <div class="form-group">
               <label>Initial Price</label>
-              <input type="text" name="price" class="form-control" required>
+              <input type="text" name="price" class="form-control" required value="{{ old('price') }}">
             </div>
             <div class="d-flex">
               <div class="form-group">
                 <label>Start Date</label>
-                <input type="date" name="startdate" class="form-control" required>
+                <input type="date" name="startdate" class="form-control" required value="{{ old('startdate') }}">
               </div>
               <div class="form-group">
                 <label>Start Time</label>
-                <input type="text" name="starttime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1" required/>
+                <input type="text" name="starttime" class="aiz-time-picker form-control" value="@if(old('starttime')) old('category') @else 00:00 @endif" placeholder="Select Time" data-minute-step="1" required/>
                 <small class="form-text text-muted">Some help text.</small>
               </div>
             </div>
@@ -40,11 +54,11 @@
             <div class="d-flex">
               <div class="form-group">
                 <label>End Date</label>
-                <input type="date" name="enddate" class="form-control" required>
+                <input type="date" name="enddate" class="form-control" required value="{{ old('enddate') }}">
               </div>
               <div class="form-group">
                 <label>End Time</label>
-                <input type="text" name="endtime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1" required/>
+                <input type="text" name="endtime" class="aiz-time-picker form-control" value="@if(old('endtime')) old('category') @else 00:00 @endif" placeholder="Select Time" data-minute-step="1" required/>
                 <small class="form-text text-muted">Some help text.</small>
               </div>
             </div>
