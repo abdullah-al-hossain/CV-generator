@@ -19,7 +19,7 @@ class CreateBiddersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('bidding_price');
             $table->timestamps();
-
+            $table->softDeletes();
             $table->index(['auction_id', 'user_id']);
         });
     }
