@@ -217,7 +217,7 @@ class CvController extends Controller
       // Image
 
       if (isset($request->image)) {
-        $usersImage = public_path("images/{$request->existingImage}"); // get previous image from folder
+        $usersImage = public_path("images/".$request->existingImage); // get previous image from folder
         if (File::exists($usersImage)) { // unlink or remove previous image from folder
             unlink($usersImage);
         }

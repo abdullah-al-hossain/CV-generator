@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Auction;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::latest()->get();
-        // dd($products);
+
         return view('admin.products.index', compact('products'));
     }
 
@@ -53,7 +54,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -64,7 +65,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -75,7 +76,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
@@ -87,7 +90,29 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $product->category = $request->category;
+        $product->description = $request->description;
+
+        if (isset($request->image)) {
+          $prodImage = public_path("images/products/".$request->existingImage); // get previous image from folder
+          if (File::exists($prodImage)) { // unlink or remove previous image from folder
+              unlink($prodImage);
+          }
+          $image_name = time().'.'.$request->image->extension();
+          $request->image->move(public_path('images'), $image_name);
+        } else {
+          $image_name = $request->existingImage;
+        }
+
+        $product->image = $image_name;
+
+        $product->update();
+
+        return redirect()->route('product.index');
+
+
     }
 
     /**
@@ -98,6 +123,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $prod = Product::findOrFail($id);
+        $auctions = $prod->auctions;
+
+        if ($auctions != null || $auctions->count() > 0) {
+          foreach ($auctions as $auction) {
+            Auction::destroy($auction->id);
+          }
+        }
+
+        $prod = Product::destroy($id);
+        if ($prod) {
+          return redirect()->route('product.index');
+        }
+
+        return 'failed';
     }
 }

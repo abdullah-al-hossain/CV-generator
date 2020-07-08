@@ -15,8 +15,8 @@ class AuctionController extends Controller
      */
     public function index()
     {
-      $auctions = Auction::latest()->get();
-
+      $auctions = Auction::latest()->paginate(15);
+      // dd($auctions[0]->product->name);
       return view('admin.auctions.index', compact('auctions'));
     }
 
@@ -28,7 +28,10 @@ class AuctionController extends Controller
     public function create()
     {
         $products = Product::latest()->get();
-
+        // dd(empty($products));
+        if($products == null || $products->count() == 0) {
+            return redirect()->route('product.create')->with('prodEmpty', 'Your product table is empty! Add a product to continue . . .');
+        }
         return view('admin.auctions.create', compact('products'));
     }
 
@@ -72,7 +75,10 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        //
+        $auction = Auction::findOrFail($id);
+        $bidders = $auction->bidders;
+
+        return view('admin.auctions.show', compact('auction', 'bidders'));
     }
 
     /**
@@ -106,6 +112,10 @@ class AuctionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $auction = Auction::findOrFail($id);
+        $bidders = $auction->bidders()->delete();
+        $auction = Auction::destroy($id);
+
+        return redirect()->route('auction.index');
     }
 }

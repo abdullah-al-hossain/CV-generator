@@ -5,6 +5,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
+      @if (session('prodEmpty'))
+          <div class="alert alert-warning">
+              {{ session('prodEmpty') }}
+          </div>
+      @endif
       <div class="card">
         <div class="card-header">
           <h5 class="mb-0 h6">Add new product . . .</h5>

@@ -20,7 +20,9 @@ p {
   display: none;
 }
 
-
+.no-drop {
+  cursor: no-drop!important;
+}
 </style>
 
 <meta name="csrf_token" content="{{ csrf_token() }}" />
@@ -29,12 +31,13 @@ p {
   <img src="{{asset('/images/abc.gif')}}" alt="" style="width: 150px; height: 150px;">
 </div>
 <div class="container">
+
   <div class="row">
     <div class="col-lg-3">
       <div class="alert alert-warning h-50">
-        <p id="demo"></p>
+        <p id="demo" class="my-auto"></p>
       </div>
-      <div class="alert alert-primary h-50">
+      <div class="alert alert-primary h-50 text-center">
         <h4><b><u>Initial price was</u> :</b><span>{{ $auction->product_init_price }}</span></h4>
         <h4><u>Last bidded :</u>
             <span id="bidprice">
@@ -48,21 +51,23 @@ p {
         </h4>
       </div>
     </div>
+
     <div class="col-lg-6">
-      <div class="card h-100">
+      <div class="card">
         <div class="card-body">
           <div class="contents">
           <form action="{{ route('bid.new') }}" method="post">
             @csrf
-            <div class="form-group">
-              <label>
+            <div class="form-group mb-1">
+              <label class="w-100 mb-0">
                 <p class="h1 text-center">Enter a Bidding price</p>
-                <input type="text" name="bidPrice" class="form-control">
+                <input type="text" name="bidPrice" class="form-control" style="border: 1px solid #ccc;" placeholder="Insert you bidding price . . . ">
               </label>
               <input type="hidden" name="auction" value="{{ $auction->id }}">
               <input type="hidden" name="uid" value="{{ Auth::user()->id }}">
-
-              <button type="submit" class="btn btn-md btn-primary btnsub" id="btn">Bid!</button>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-md btn-primary btnsub w-100" id="btn">Bid!</button>
             </div>
           </form>
 
@@ -73,8 +78,9 @@ p {
         </div>
       </div>
     </div>
+
     <div class="col-lg-3">
-      <div class="card h-100">
+      <div class="card">
         <div class="card-header">
           @php  $image = "images/products/".$auction->product->image;  @endphp
           <img src='<?php echo asset($image);?>' alt="Product_image" class="img-thumbnail">
@@ -85,7 +91,9 @@ p {
         </div>
       </div>
     </div>
+
   </div>
+
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -131,6 +139,26 @@ function winner() {
   });
 }
 
+function loadData()
+{
+  $.ajax({
+    url:"{{route('bid.shownew')}}",
+    type:"GET",
+    data: {
+      aid: $("input[name=auction]").val(),
+    },
+    success:function(data)
+    {
+      $('#bidprice').html(data);
+    },
+    error: function (request, status, error) {
+      // alert(request.responseText);
+    },
+  });
+}
+
+loadData();
+
 // Set the date we're counting down to
 var countDownDate = new Date("<?php echo $auction->bid_start ?>").getTime();
 var countDownDate1 = new Date("<?php echo $auction->bid_end ?>").getTime();
@@ -156,6 +184,9 @@ var countdowntimer = setInterval(function() {
     document.getElementById("demo").innerHTML = "Starts after : <br>" + days + "d " + hours + "h "
     + minutes + "m " + seconds + "s ";
     document.getElementById('btn').disabled = true;
+    $('.btn').addClass("no-drop");
+    $("input[name=bidPrice]").addClass("no-drop");
+    $("input[name=bidPrice]").attr("disabled", "disabled");
   } else {
     if (distanceEnd > 0) {
       loadData();
@@ -168,15 +199,18 @@ var countdowntimer = setInterval(function() {
       document.getElementById("demo").innerHTML = "Ends in : <br>" + daysEnd + "d " + hoursEnd + "h "
       + minutesEnd + "m " + secondsEnd + "s ";
       document.getElementById('btn').disabled = false;
-
+      $('.btn').removeClass("no-drop");
+      $("input[name=bidPrice]").removeClass("no-drop");
+      $("input[name=bidPrice]").removeAttr("disabled");
     } else {
       clearInterval(countdowntimer);
       $('.contents').hide();
       $('.winner').show();
       winner();
       getWinner();
-      AIZ.plugins.notify('primary','Bidding has ended!')
+      AIZ.plugins.notify('primary','Bidding has ended!');
       document.getElementById('btn').disabled = true;
+      $('.btn').addClass("no-drop");
       document.getElementById("demo").innerHTML = "EXPIRED";
     }
   }
@@ -186,25 +220,6 @@ var countdowntimer = setInterval(function() {
 
 
 // This function loads the latest bidder and the bidded price
-function loadData()
-{
-  $.ajax({
-    url:"{{route('bid.shownew')}}",
-    type:"GET",
-    data: {
-      aid: $("input[name=auction]").val(),
-    },
-    success:function(data)
-    {
-      $('#bidprice').html(data);
-    },
-    error: function (request, status, error) {
-      // alert(request.responseText);
-    },
-  });
-}
-
-loadData();
 
 // Onclick submit button...
 $(".btnsub").on('click', function(e) {
@@ -234,8 +249,15 @@ $(".btnsub").on('click', function(e) {
        aid: $("input[name=auction]").val()
     },
     success: function(result){
-        $('#bidprice').html(result);
-        AIZ.plugins.notify('success','Your bid has been added!')
+        result = JSON.parse(result);
+        if(result.hasOwnProperty('error')) {
+          AIZ.plugins.notify('danger', result.error);
+        } else
+          AIZ.plugins.notify('success','Your bid has been added!');
+    },
+    error: function (request, status, error) {
+      var errorResponse = JSON.parse(request.responseText);
+      AIZ.plugins.notify('danger',errorResponse.errors.bidPrice);
     },
     beforeSend: function(){
       $('.loader').show();

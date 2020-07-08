@@ -12,6 +12,7 @@
 
 	<!-- google font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<!-- vendors css -->
 	<link rel="stylesheet" href=" {{ asset('assets/css/vendors.css') }}">
@@ -47,24 +48,19 @@
 
 						<li class="aiz-side-nav-item">
 							<a href="javascript:void(0);" class="aiz-side-nav-link">
-								<i class="las la-tachometer-alt aiz-side-nav-icon"></i>
-								<span class="aiz-side-nav-text">Forms Elements</span>
+								<i class="fa fa-eye" aria-hidden="true"></i>
+								<span class="aiz-side-nav-text">&nbsp;&nbsp;View</span>
 								<span class="aiz-side-nav-arrow"></span>
 							</a>
 							<ul class="aiz-side-nav-list level-2">
 								<li class="aiz-side-nav-item">
-									<a href="forms-basic.html" class="aiz-side-nav-link">
-										<span class="aiz-side-nav-text">Form Basic</span>
+									<a href="{{ route('auction.index')}}" class="aiz-side-nav-link">
+										<span class="aiz-side-nav-text">Auctions</span>
 									</a>
 								</li>
 								<li class="aiz-side-nav-item">
-									<a href="javascript:void(0);" class="aiz-side-nav-link">
-										<span class="aiz-side-nav-text">Dashboard</span>
-									</a>
-								</li>
-								<li class="aiz-side-nav-item">
-									<a href="javascript:void(0);" class="aiz-side-nav-link">
-										<span class="aiz-side-nav-text">Dashboard</span>
+									<a href="{{ route('product.index')}}" class="aiz-side-nav-link">
+										<span class="aiz-side-nav-text">Products</span>
 									</a>
 								</li>
 							</ul>

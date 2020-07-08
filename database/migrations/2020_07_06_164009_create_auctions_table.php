@@ -20,7 +20,7 @@ class CreateAuctionsTable extends Migration
             $table->dateTime('bid_start', 0);
             $table->dateTime('bid_end', 0);
             $table->timestamps();
-
+            $table->softDeletes();
             $table->index('product_id');
         });
     }

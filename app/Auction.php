@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Auction extends Model
 {
-
+  use SoftDeletes;
 
   public function product() {
     return $this->belongsTo(Product::class);

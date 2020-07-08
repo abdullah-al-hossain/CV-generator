@@ -7,7 +7,7 @@
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
         <div class="card-header">
-          <h5 class="mb-0 h6">Add new product . . .</h5>
+          <h5 class="mb-0 h6">Add new Auction . . .</h5>
         </div>
         <div class="card-body">
           <form action="{{ route('auction.store') }}" method="post">
@@ -23,16 +23,16 @@
             </div>
             <div class="form-group">
               <label>Initial Price</label>
-              <input type="text" name="price" class="form-control">
+              <input type="text" name="price" class="form-control" required>
             </div>
             <div class="d-flex">
               <div class="form-group">
                 <label>Start Date</label>
-                <input type="date" name="startdate" class="form-control">
+                <input type="date" name="startdate" class="form-control" required>
               </div>
               <div class="form-group">
                 <label>Start Time</label>
-                <input type="text" name="starttime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1"/>
+                <input type="text" name="starttime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1" required/>
                 <small class="form-text text-muted">Some help text.</small>
               </div>
             </div>
@@ -40,11 +40,11 @@
             <div class="d-flex">
               <div class="form-group">
                 <label>End Date</label>
-                <input type="date" name="enddate" class="form-control">
+                <input type="date" name="enddate" class="form-control" required>
               </div>
               <div class="form-group">
                 <label>End Time</label>
-                <input type="text" name="endtime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1" />
+                <input type="text" name="endtime" class="aiz-time-picker form-control" value="00:00" placeholder="Select Time" data-minute-step="1" required/>
                 <small class="form-text text-muted">Some help text.</small>
               </div>
             </div>
