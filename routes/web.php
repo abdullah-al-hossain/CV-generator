@@ -26,6 +26,7 @@ Auth::routes();
 
 // Home routes
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin-cv/{id}', 'AdminController@view_cv')->name('admin.show.cv')->middleware('admin');
 
 // Admin routes
 Route::get('/adminlogin', 'AdminController@login')->name('admin.login');

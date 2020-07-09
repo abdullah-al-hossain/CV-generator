@@ -4,19 +4,41 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 offset-2">
+    <div class="col-md-12 col-lg-8 offset-md-0 offset-lg-2">
       <div class="card">
         <div class="card-header">
           <div class="col-md-5">
             @php
-            $image = "images/products/".$auction->product->image;
+              $image = "images/products/".$auction->product->image;
             @endphp
             <img src='{{ asset($image) }}' alt="Product_image" class="img-thumbnail">
           </div>
           <div class="col-md-7">
-            <p class="h4">{{ $auction->product->name }}</p>
-            <p class="h5">{{ $auction->product->description }}</p>
+            <p class="display-4">{{ $auction->product->name }}</p>
+            <p class="lead">{{ $auction->product->description }}</p>
+            <p class="h6 mt-4">Initial price: {{ $auction->product_init_price }}</p>
+            @php
+              $start1 = strtotime($auction->bid_start);
+              $start = date('Y-m-d', $start1);
+            @endphp
+            <p class="h6">Start Date: {{ $start }}</p>
+            @php
+              $start1 = strtotime($auction->bid_start);
+              $start = date('H:i A', $start1);
+            @endphp
+            <p class="h6">Start Time: {{ $start }}</p>
+            @php
+              $start1 = strtotime($auction->bid_end);
+              $start = date('Y-m-d', $start1);
+            @endphp
+            <p class="h6">End Date: {{ $start }}</p>
+            @php
+              $start1 = strtotime($auction->bid_end);
+              $start = date('H:i A', $start1);
+            @endphp
+            <p class="h6">End Time: {{ $start }}</p>
           </div>
+          <a href="{{ route('auction.edit', ['auction' => $auction->id]) }}" class="btn btn-sm btn-warning " style="position: absolute; top: 8px; right: 20px;">Edit</a>
         </div>
         <div class="card-body">
           <div class="table-responsive">

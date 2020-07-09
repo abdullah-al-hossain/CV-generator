@@ -8,6 +8,7 @@ use App\Auction;
 
 class ProductController extends Controller
 {
+    // Checks if the user is admin or not
     public function __construct() {
       $this->middleware('admin');
     }
@@ -41,6 +42,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the sent requests
         $request->validate([
           'name' => 'string|required',
           'category' => 'string|required',
@@ -53,6 +55,7 @@ class ProductController extends Controller
         $product->category = $request->category;
         $product->description = $request->description;
 
+        // setting and gettig the image path and storing the image on 'public/images/products'
         if (isset($request->image)) {
           $image_name = time().'.'.$request->image->extension();
           $request->image->move(public_path('images/products'), $image_name);
@@ -75,7 +78,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        abort(404);
+        $product = Product::findOrFail($id);
+
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -100,7 +105,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        // validates the acquired requests
         $request->validate([
           'name' => ['required', 'string'],
           'category' => ['required', 'string'],
@@ -115,13 +120,13 @@ class ProductController extends Controller
 
         if (isset($request->image)) {
           $prodImage = public_path("images/products/".$request->existingImage); // get previous image from folder
-          if (File::exists($prodImage)) { // unlink or remove previous image from folder
-              unlink($prodImage);
+          if (File::exists($prodImage)) {
+              unlink($prodImage); // unlink or remove previous image of the product
           }
-          $image_name = time().'.'.$request->image->extension();
+          $image_name = time().'.'.$request->image->extension(); // get unique image name
           $request->image->move(public_path('images'), $image_name);
         } else {
-          $image_name = $request->existingImage;
+          $image_name = $request->existingImage; // If the default image that was set was not changed
         }
 
         $product->image = $image_name;
@@ -129,7 +134,6 @@ class ProductController extends Controller
         $product->update();
 
         return redirect()->route('product.index');
-
 
     }
 
@@ -142,19 +146,17 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $prod = Product::findOrFail($id);
-        $auctions = $prod->auctions;
 
-        if ($auctions != null || $auctions->count() > 0) {
-          foreach ($auctions as $auction) {
-            Auction::destroy($auction->id);
-          }
+        if ($prod->auctions != null || $prod->auctions->count() > 0) {
+          $prod->auctions()->delete();
         }
 
         $prod = Product::destroy($id);
+
         if ($prod) {
           return redirect()->route('product.index');
         }
 
-        return 'failed';
+        abort(404);
     }
 }

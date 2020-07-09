@@ -26,7 +26,7 @@
         <td>{{$product->description}}</td>
         <td class="d-flex justify-content-center align-content-center"><img src='{{asset("images/products/$product->image")}}' alt="Product_image" width="150" class="img-thumbnail"></td>
         <td>
-          <a href="#{{ route('product.show', ['product' => $product->id]) }}" class="btn btn-primary btn-sm">
+          <a href="{{ route('product.show', ['product' => $product->id]) }}" class="btn btn-primary btn-sm">
             <i class="fa fa-eye" aria-hidden="true"></i>
             View
           </a>

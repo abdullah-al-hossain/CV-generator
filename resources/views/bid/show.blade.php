@@ -1,6 +1,27 @@
 @extends('layouts.app')
 <style>
-p {
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 5px !important;
+}
+
+.card .card-body {
+    padding: 20px 25px;
+    border-radius: 0px  0px 4px 4px !important;
+}
+
+.card {
+  margin-bottom: 0 !important;
+}
+
+.alert {
+  margin-bottom: 0px !important;
+}
+
+p.demo {
   text-align: center;
   font-size: 30px;
   margin: auto 0px;
@@ -24,7 +45,8 @@ p {
   cursor: no-drop!important;
 }
 </style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/ring_animation.css') }}">
 <meta name="csrf_token" content="{{ csrf_token() }}" />
 @section('content')
 <div class="loader">
@@ -34,33 +56,25 @@ p {
 
   <div class="row">
     <div class="col-lg-3">
-      <div class="alert alert-warning h-50">
-        <p id="demo" class="my-auto"></p>
-      </div>
-      <div class="alert alert-primary h-50 text-center p-1">
-        <p class="h5"><b><u>Initial price</u> :</b><span>{{ $auction->product_init_price }}</span></p>
-        <p class="h5"><u>Last bidded :</u>
-            <span id="bidprice">
-              @if($bidded != null)
-                {{ $bidded->latest()->first()->bidding_price }}
-                By {{ $bidded->latest()->first()->user->name }}
-              @else
-                No Bid Made
-              @endif
-            </span>
-        </p>
+      <div class="card text-center text-md-left text-white">
+        @php  $image = "images/products/".$auction->product->image;  @endphp
+        <img src='{{ asset($image) }}' alt="Product_image" class="card-img-top">
+        <div class="card-body bg-success text-white">
+          <h5 class="card-title">{{ $auction->product->name }}</h5>
+          <p class="card-text">{{ $auction->product->description }}</p>
+        </div>
       </div>
     </div>
 
     <div class="col-lg-6">
-      <div class="card">
-        <div class="card-body">
+      <div class="card h-100 bg-dark" style="border-radius: 7px;">
+        <div class="card-body text-capitalize absolute-center text-white">
           <div class="contents">
           <form action="{{ route('bid.new') }}" method="post">
             @csrf
             <div class="form-group mb-1">
               <label class="w-100 mb-0">
-                <p class="h1 text-center">Enter a Bidding price</p>
+                <p class="h1 text-center"><i class="fa fa-money" aria-hidden="true"></i> Enter a Bidding price</p>
                 <input type="text" name="bidPrice" class="form-control" style="border: 1px solid #ccc;" placeholder="Insert you bidding price . . . ">
               </label>
               <input type="hidden" name="auction" value="{{ $auction->id }}">
@@ -72,200 +86,53 @@ p {
           </form>
 
           </div>
-          <div class="alert alert-success winner">
-            <p id="winner"></p>
-          </div>
+        </div>
+        <div class="alert alert-success winner text-capitalize absolute-center h-100">
+          <p id="winner" class="demo"></p>
         </div>
       </div>
     </div>
 
     <div class="col-lg-3">
-      <div class="card">
-        <div class="card-header">
-          @php  $image = "images/products/".$auction->product->image;  @endphp
-          <img src='<?php echo asset($image);?>' alt="Product_image" class="img-thumbnail">
-        </div>
-        <div class="card-body">
-          <span class="h4 d-block"><b>Product Name :</b>{{ $auction->product->name }}</span>
-          <span><b>Product Details:</b>{{ $auction->product->description }}</span>
-        </div>
+      <div class="card h-50 bg-success text-white">
+        <p id="demo" class="my-auto demo"></p>
+      </div>
+      <div class="card h-50 text-center bg-success text-white">
+        <div class="m-auto h5">
+        <span style="margin-bottom: 0px;"><b>Initial price was :</b><span>{{ $auction->product_init_price }}</span></span>
+        <p>Last bidded :
+            <span id="bidprice">
+              @if($bidded != null)
+                {{ $bidded->latest()->first()->bidding_price }}
+                By {{ $bidded->latest()->first()->user->name }}
+              @else
+                No Bid Made
+              @endif
+            </span>
+        </p>
+      </div>
       </div>
     </div>
 
   </div>
+</div>
+
+<div class="bidding-info d-none"
+  data-bidstart="{{ $auction->bid_start }}"
+  data-bidend="{{ $auction->bid_end }}"
+>
+</div>
+
+<div class="important-urls"
+  data-getwinner="{{ route('show.winner') }}"
+  data-setwinner="{{ route('bid.winner') }}"
+  data-loadbidder="{{route('bid.shownew')}}"
+  data-setnewbidder="{{ route('bid.new') }}"
+>
 
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-<script type="text/javascript">
-
-// This function fetches the winner of the auction and shows the winner
-function getWinner() {
-  $.ajax({
-    url:"{{route('show.winner')}}",
-    type:"GET",
-    data: {
-      aid: $("input[name=auction]").val(),
-    },
-    success:function(data)
-    {
-      $('#winner').html(data);
-    },
-    error: function (request, status, error) {
-      // alert(request.responseText);
-    },
-  });
-}
-
-
-// After the bidding time is over this inserts the bidder that wins in the DB
-function winner() {
-  $.ajax({
-    url: "{{ route('bid.winner') }}",
-    type: 'POST',
-    data: {
-       _token: $('meta[name="csrf-token"]').attr('content'),
-       bidPrice: $("input[name=bidPrice]").val(),
-       uid: $("input[name=uid]").val(),
-       aid: $("input[name=auction]").val()
-    },
-    beforeSend: function(){
-      $('.loader').show();
-    },
-    complete: function(){
-      $('.loader').hide();
-    }
-  });
-}
-
-function loadData()
-{
-  $.ajax({
-    url:"{{route('bid.shownew')}}",
-    type:"GET",
-    data: {
-      aid: $("input[name=auction]").val(),
-    },
-    success:function(data)
-    {
-      $('#bidprice').html(data);
-    },
-    error: function (request, status, error) {
-      // alert(request.responseText);
-    },
-  });
-}
-
-loadData();
-
-// Set the date we're counting down to
-var countDownDate = new Date("<?php echo $auction->bid_start ?>").getTime();
-var countDownDate1 = new Date("<?php echo $auction->bid_end ?>").getTime();
-// Get today's date and time
-
-// Update the count down every 1 second
-var countdowntimer = setInterval(function() {
-
-
-  var now = new Date().getTime();
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-  var distanceEnd = countDownDate1 - now;
-
-  // If the count down is finished, write some text
-  if (distance > 0) {
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    document.getElementById("demo").innerHTML = "Starts after : <br>" + days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-    document.getElementById('btn').disabled = true;
-    $('.btn').addClass("no-drop");
-    $("input[name=bidPrice]").addClass("no-drop");
-    $("input[name=bidPrice]").attr("disabled", "disabled");
-  } else {
-    if (distanceEnd > 0) {
-      loadData();
-
-      var daysEnd = Math.floor(distanceEnd / (1000 * 60 * 60 * 24));
-      var hoursEnd = Math.floor((distanceEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutesEnd = Math.floor((distanceEnd % (1000 * 60 * 60)) / (1000 * 60));
-      var secondsEnd = Math.floor((distanceEnd % (1000 * 60)) / 1000);
-
-      document.getElementById("demo").innerHTML = "Ends in : <br>" + daysEnd + "d " + hoursEnd + "h "
-      + minutesEnd + "m " + secondsEnd + "s ";
-      document.getElementById('btn').disabled = false;
-      $('.btn').removeClass("no-drop");
-      $("input[name=bidPrice]").removeClass("no-drop");
-      $("input[name=bidPrice]").removeAttr("disabled");
-    } else {
-      clearInterval(countdowntimer);
-      $('.contents').hide();
-      $('.winner').show();
-      winner();
-      getWinner();
-      AIZ.plugins.notify('primary','Bidding has ended!');
-      document.getElementById('btn').disabled = true;
-      $('.btn').addClass("no-drop");
-      document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-  }
-
-
-}, 1000);
-
-
-// This function loads the latest bidder and the bidded price
-
-// Onclick submit button...
-$(".btnsub").on('click', function(e) {
-  e.preventDefault();
-  // Time check of expiration and starting of the Bidding
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var distanceEnd = countDownDate1 - now;
-
-  if (distance > 0 ) {
-    AIZ.plugins.notify('primary','The bidding has not started yet!!');
-    return;
-  } else {
-    if (distanceEnd < 0) {
-      AIZ.plugins.notify('primary','The bidding has ended!!');
-      return;
-    }
-  }
-
-  $.ajax({
-    url: "{{ route('bid.new') }}",
-    type: 'POST',
-    data: {
-       _token: $('meta[name="csrf-token"]').attr('content'),
-       bidPrice: $("input[name=bidPrice]").val(),
-       uid: $("input[name=uid]").val(),
-       aid: $("input[name=auction]").val()
-    },
-    success: function(result){
-        result = JSON.parse(result);
-        if(result.hasOwnProperty('error')) {
-          AIZ.plugins.notify('danger', result.error);
-        } else
-          AIZ.plugins.notify('success','Your bid has been added!');
-    },
-    error: function (request, status, error) {
-      var errorResponse = JSON.parse(request.responseText);
-      AIZ.plugins.notify('danger',errorResponse.errors.bidPrice);
-    },
-    beforeSend: function(){
-      // $('.loader').show();
-    },
-    complete: function(){
-      $('.loader').hide();
-    }
-  });
-});
-</script>
+<script type="text/javascript" src="{{ asset('assets/js/bid.js') }}"></script>
 @endsection

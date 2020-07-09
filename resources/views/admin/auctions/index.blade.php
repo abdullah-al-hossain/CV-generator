@@ -2,9 +2,10 @@
 
 
 @section('content')
-<?php
-  use Carbon\Carbon;
- ?>
+
+<div class="h3 text-center">
+   Auctions table
+</div>
 <div class="table-responsive">
   <table class="table aiz-table mb-0 table-bordered table-hover">
     <thead>
@@ -32,7 +33,7 @@
             <i class="fa fa-eye" aria-hidden="true"></i>
             View
           </a>
-          <a href="#{{ route('auction.edit', ['auction' => $auction->id]) }}" class="btn btn-warning btn-sm">
+          <a href="{{ route('auction.edit', ['auction' => $auction->id]) }}" class="btn btn-warning btn-sm">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             Edit
           </a>

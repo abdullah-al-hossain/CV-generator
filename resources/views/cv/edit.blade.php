@@ -1,50 +1,50 @@
 <style media="screen">
-  .card-header {
-    background: #ad5389;
-    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
-    background: linear-gradient(to right, #3c1053, #ad5389);
-    color: #fff;
-  }
+.card-header {
+  background: #ad5389;
+  background: -webkit-linear-gradient(to right, #3c1053, #ad5389);
+  background: linear-gradient(to right, #3c1053, #ad5389);
+  color: #fff;
+}
 
-  .card .collapse {
-    background: #3C3B3F;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: #fff!important;
-  }
+.card .collapse {
+  background: #3C3B3F;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #605C3C, #3C3B3F);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #605C3C, #3C3B3F); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #fff!important;
+}
 
-  .card .collapse thead {
-    color: #fff;
-  }
+.card .collapse thead {
+  color: #fff;
+}
 </style>
 @extends('layouts.app')
 @section('title')
-  Edit CV!
+Edit CV!
 @endsection
 @section('content')
 <div class="container">
   @if ($errors->any())
-      <div class="alert alert-danger fade show">
-          <ul style="margin: 0;">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-              @foreach ($errors->all() as $error)
-                  <li>{!! $error !!}</li>
-              @endforeach
-          </ul>
-      </div>
+  <div class="alert alert-danger fade show">
+    <ul style="margin: 0;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      @foreach ($errors->all() as $error)
+      <li>{!! $error !!}</li>
+      @endforeach
+    </ul>
+  </div>
   @endif
 
   @if(session('hack'))
-      <div class="alert alert-danger fade show">
-          <ul style="margin: 0;">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-              {!! session('hack') !!}
-          </ul>
-      </div>
+  <div class="alert alert-danger fade show">
+    <ul style="margin: 0;">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {!! session('hack') !!}
+    </ul>
+  </div>
   @endif
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
@@ -82,7 +82,10 @@
                   <span class="custom-file-name">Choose file</span>
                 </label>
               </div>
-              <img src="{{ asset('/images/'.$userPersonalInfo->image) }}" class="pt-2 rounded-circle mx-auto my-3" style="display: block; height:150px; width: 150px;"  id="image">
+              <figure  class="pt-2 mx-auto my-3" style="display: block; height:150px; width: 150px;">
+                <img src="{{ asset('/images/'.$userPersonalInfo->image) }}" class=" rounded-circle" style="display: block; height:150px; width: 150px;"  id="image">
+                <figcaption id="imgcap" align="center">Default Image</figcaption>
+              </figure>
             </div>
 
             <div class="form-group">
@@ -119,24 +122,24 @@
               <label>Education details</label>
               <table class="table table-bordered table-striped" id="user_table">
                 <thead>
-                 <tr>
-                     <th width="15%">Name of Degree</th>
-                     <th width="40%">Institution</th>
-                     <th width="5%">GPA/CGPA</th>
-                     <th width="18%">Time Period</th>
-                     <th width="22%">Action</th>
-                 </tr>
+                  <tr>
+                    <th width="15%">Name of Degree</th>
+                    <th width="40%">Institution</th>
+                    <th width="5%">GPA/CGPA</th>
+                    <th width="18%">Time Period</th>
+                    <th width="22%">Action</th>
+                  </tr>
                 </thead>
                 <tbody id="educations">
-                    @foreach ($eduInfo as $edu)
-                    <tr>
-                      <td><input type="text" name="eduName[]" class="form-control" value="{{ $edu->degree }} "/></td>
-                      <td><input type="text" name="instName[]" class="form-control" value="{{ $edu->institution }} "/></td>
-                      <td><input type="text" name="grade[]" class="form-control" value="{{ $edu->grade }} "/></td>
-                      <td><input type="text" name="duration[]" class="form-control" value="{{ $edu->duration }} "/></td>
-                      <td><button type="button" name="remove" id="" class="btn btn-danger removeEdu"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td>
-                    </tr>
-                    @endforeach
+                  @foreach ($eduInfo as $edu)
+                  <tr>
+                    <td><input type="text" name="eduName[]" class="form-control" value="{{ $edu->degree }} "/></td>
+                    <td><input type="text" name="instName[]" class="form-control" value="{{ $edu->institution }} "/></td>
+                    <td><input type="text" name="grade[]" class="form-control" value="{{ $edu->grade }} "/></td>
+                    <td><input type="text" name="duration[]" class="form-control" value="{{ $edu->duration }} "/></td>
+                    <td><button type="button" name="remove" id="" class="btn btn-danger removeEdu"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td>
+                  </tr>
+                  @endforeach
                 </tbody>
                 <tfooter>
                   <tr>
@@ -218,22 +221,22 @@ $(document).ready(function(){
   var countEdu = <?php echo count($eduInfo) ?>;
   var countSkill = <?php echo count($skillInfo) ?>;
 
-// ** Starting of Projects Dynamic input generation code **
+  // ** Starting of Projects Dynamic input generation code **
   function dynamic_field_proj(number)
   {
-  var html = '<tr>';
-        html += '<td><input type="text" name="projname[]" class="form-control" /></td>';
-        html += '<td><textarea name="projdetails[]" class="form-control" style="resize: none;"></textarea></td>';
-        if(number > 1)
-        {
-            html += '<td><button type="button" name="remove" id="" class="btn btn-danger removeProj"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
-            $('#projects').append(html);
-        }
-        else
-        {
-            html += '<td><button type="button" name="add" id="addProj" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Add </button></td></tr>';
-            $('#projects').html(html);
-        }
+    var html = '<tr>';
+    html += '<td><input type="text" name="projname[]" class="form-control" /></td>';
+    html += '<td><textarea name="projdetails[]" class="form-control" style="resize: none;"></textarea></td>';
+    if(number > 1)
+    {
+      html += '<td><button type="button" name="remove" id="" class="btn btn-danger removeProj"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
+      $('#projects').append(html);
+    }
+    else
+    {
+      html += '<td><button type="button" name="add" id="addProj" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Add </button></td></tr>';
+      $('#projects').html(html);
+    }
   }
 
   $(document).on('click', '#addProj', function(){
@@ -246,30 +249,30 @@ $(document).ready(function(){
     $(this).closest("tr").remove();
   });
 
-// ** End of Projects Dynamic input generation code **
+  // ** End of Projects Dynamic input generation code **
 
-// ****************************
+  // ****************************
 
 
-// ** Start of education Dynamic input generation code **
+  // ** Start of education Dynamic input generation code **
   function dynamic_field_edu(number)
   {
-        var htmlEdu = '<tr>';
+    var htmlEdu = '<tr>';
 
-        htmlEdu += '<td><input type="text" name="eduName[]" class="form-control" /></td>';
-        htmlEdu += '<td><input type="text" name="instName[]" class="form-control" /></td>';
-        htmlEdu += '<td><input type="text" name="grade[]" class="form-control" /></td>';
-        htmlEdu += '<td><input type="text" name="duration[]" class="form-control" /></td>';
-        if(number > 1)
-        {
-            htmlEdu += '<td><button type="button" name="remove" id="" class="btn btn-danger removeEdu"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
-            $('#educations').append(htmlEdu);
-        }
-        else
-        {
-            htmlEdu += '<td><button type="button" name="add" id="addEdu" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Add </button></td></tr>';
-            $('#educations').html(htmlEdu);
-        }
+    htmlEdu += '<td><input type="text" name="eduName[]" class="form-control" /></td>';
+    htmlEdu += '<td><input type="text" name="instName[]" class="form-control" /></td>';
+    htmlEdu += '<td><input type="text" name="grade[]" class="form-control" /></td>';
+    htmlEdu += '<td><input type="text" name="duration[]" class="form-control" /></td>';
+    if(number > 1)
+    {
+      htmlEdu += '<td><button type="button" name="remove" id="" class="btn btn-danger removeEdu"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
+      $('#educations').append(htmlEdu);
+    }
+    else
+    {
+      htmlEdu += '<td><button type="button" name="add" id="addEdu" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Add </button></td></tr>';
+      $('#educations').html(htmlEdu);
+    }
   }
 
   $(document).on('click', '#addEdu', function(){
@@ -281,25 +284,25 @@ $(document).ready(function(){
     countEdu--;
     $(this).closest("tr").remove();
   });
-// ** End of education Dynamic input generation code **
+  // ** End of education Dynamic input generation code **
 
 
-// ** Start of skills Dynamic input generation code **
+  // ** Start of skills Dynamic input generation code **
   function dynamic_field_skill(number)
   {
-  var htmlSkills = '<tr>';
-        htmlSkills += '<td><input type="text" name="skillName[]" class="form-control" /></td>';
-        htmlSkills += '<td><textarea name="skillDetails[]" class="form-control" style="resize: none;"></textarea></td>';
-        if(number > 1)
-        {
-            htmlSkills += '<td><button type="button" name="remove" id="" class="btn btn-danger removeSkill"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
-            $('#skills').append(htmlSkills);
-        }
-        else
-        {
-            htmlSkills += '<td><button type="button" name="add" id="addSkill" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Add </button></td></tr>';
-            $('#skills').html(htmlSkills);
-        }
+    var htmlSkills = '<tr>';
+    htmlSkills += '<td><input type="text" name="skillName[]" class="form-control" /></td>';
+    htmlSkills += '<td><textarea name="skillDetails[]" class="form-control" style="resize: none;"></textarea></td>';
+    if(number > 1)
+    {
+      htmlSkills += '<td><button type="button" name="remove" id="" class="btn btn-danger removeSkill"><i class="fa fa-trash" aria-hidden="true"></i> Remove </button></td></tr>';
+      $('#skills').append(htmlSkills);
+    }
+    else
+    {
+      htmlSkills += '<td><button type="button" name="add" id="addSkill" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>Add </button></td></tr>';
+      $('#skills').html(htmlSkills);
+    }
   }
 
   $(document).on('click', '#addSkill', function(){
@@ -311,7 +314,7 @@ $(document).ready(function(){
     countSkill--;
     $(this).closest("tr").remove();
   });
-// ** End of skills Dynamic input generation code **
+  // ** End of skills Dynamic input generation code **
 });
 
 function showImage()
@@ -320,8 +323,10 @@ function showImage()
     var obj = new FileReader();
     obj.onload = function(data) {
       var image = document.getElementById("image");
+      var cap = document.getElementById("imgcap");
       // alert(data.target.result);
       image.src = data.target.result;
+      cap.innerHTML = "New image";
     }
 
     obj.readAsDataURL(this.files[0]);

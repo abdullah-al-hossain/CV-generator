@@ -58,17 +58,14 @@ class BidController extends Controller
 
       if(date('Y-m-d H:i:s') > $end_time)
       {
-        date_default_timezone_set('Asia/Dhaka');
-        $msg = ["error" => "<span class='h4'>Nice try &#129315; !</span>".date('Y-m-d H:i:s')];
-        return json_encode($msg);
+        return 'Time\'s up!';
       }
 
       if(date('Y-m-d H:i:s') < $start_time)
       {
-        $msg = ["error" => "<span class='h3'>Nice try &#129315; !</span>"];
-        return json_encode($msg);
+        return 'Event\'s not started yet!';
       }
-      
+
       $auction = Auction::findOrFail($request->aid);
       $message = [
         'required' => "You must provide a bidding price!",
@@ -117,8 +114,9 @@ class BidController extends Controller
 
     public function show_winner(Request $request) {
       $winner = Winner::where('auction_id', $request->aid)->first();
-      if ($winner == null || $winner->bidder == null || $winner->bidder->user == null) {
-        return 'Nobody won!';
+
+      if ($winner == null || $winner->count() == 0 || $winner->bidder == null) {
+        return 'Nobody Bidded!';
       }
       $winnerName = $winner->bidder->user->name;
       $winnerPrice = $winner->bidder->bidding_price;

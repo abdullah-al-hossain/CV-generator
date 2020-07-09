@@ -19,7 +19,7 @@
       @endif
       <div class="card">
         <div class="card-header">
-          <h5 class="mb-0 h6">Add new product . . .</h5>
+          <h5 class="mb-0 h6">Edit product . . .</h5>
         </div>
         <div class="card-body">
           <form action="{{ route('product.update', ['product' => $product->id]) }}" method="post" enctype="multipart/form-data">

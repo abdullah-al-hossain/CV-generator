@@ -1,6 +1,6 @@
 @php
-    $uid = Auth::check() ? Auth::user()->id : 0;
-    $user_cv = \App\Cv::where('user_id', $uid)->first();
+$uid = Auth::check() ? Auth::user()->id : 0;
+$user_cv = \App\Cv::where('user_id', $uid)->first();
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -97,19 +97,36 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/') }}">{{ Auth::user()->name }}</a>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">{{ __('Login') }}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
+
             <div class="content">
-              <div style="text-align:center;padding:1em 0;"><iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=large&timezone=Asia%2FDhaka" width="100%" height="140" frameborder="0" seamless></iframe> </div>
-                <div class="title m-b-md">                    
+                <div style="text-align:center;padding:1em 0;">
+                  <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=medium&timezone=Asia%2FDhaka"
+                          width="100%"
+                          height="115"
+                          frameborder="0"
+                          seamless>
+                  </iframe>
+                </div>
+
+                <div class="title m-b-md">
                     <img src="{{ URL::to('/images/ico.png') }}" alt="" height="60"style="width: auto; padding-right: 10px; border-right: 1px solid #000;"><span style="padding-left: 15px;">freeCV@Gen</span>
                 </div>
 

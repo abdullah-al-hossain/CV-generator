@@ -45,19 +45,13 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-          @endif
-          <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-              This CV was created at {{ $userPersonalInfo->formatted_created_at }} and updated at {{ $userPersonalInfo->getUpdationDate() }}!
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+          @endif          
 
             <div class="card">
                 <div class="card-header">
                   <div class="row w-100">
                     <div class="col-md-4">
-                      <img src="{{ URL::to('/images/'.$userPersonalInfo->image) }}" alt="CV image" style="height: 200px; width: 200px;" class="rounded-circle">
+                      <img src="{{ asset('/images/'.$userPersonalInfo->image) }}" alt="CV image" style="height: 200px; width: 200px;" class="rounded-circle">
                     </div>
                     <div class="col-md-8" style="margin: auto 0px;">
                       <span style="font-size: 30px;"><strong>Name: </strong>{{ $userPersonalInfo->name }}</span>

@@ -16,7 +16,7 @@ class CheckAdmin
             return $next($request);
         }
 
-        return redirect()->route('home');
+        return redirect('/');
       } else {
         return redirect()->route('admin.login');
       }

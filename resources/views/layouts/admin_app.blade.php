@@ -67,9 +67,9 @@
 						</li>
 
 						<li class="aiz-side-nav-item">
-							<a href="javascript:void(0);" class="aiz-side-nav-link">
-								<i class="las la-tachometer-alt aiz-side-nav-icon"></i>
-								<span class="aiz-side-nav-text">Dashboard</span>
+							<a href="{{ route('cv.index') }}" class="aiz-side-nav-link">
+								<i class="fa fa-file aiz-side-nav-icon" aria-hidden="true"></i>
+								<span class="aiz-side-nav-text">View CVs</span>
 							</a>
 						</li>
 
