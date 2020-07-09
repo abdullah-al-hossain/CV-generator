@@ -118,6 +118,7 @@ class BidController extends Controller
     public function show_winner(Request $request) {
       $winner = Winner::where('auction_id', $request->aid)->first();
       if ($winner == null || $winner->bidder == null || $winner->bidder->user == null) {
+        return 'Nobody won!';
       }
       $winnerName = $winner->bidder->user->name;
       $winnerPrice = $winner->bidder->bidding_price;
