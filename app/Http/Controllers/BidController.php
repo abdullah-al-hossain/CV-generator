@@ -58,12 +58,15 @@ class BidController extends Controller
 
       if(date('Y-m-d H:i:s') > $end_time)
       {
-        return 'Time\'s up!';
+        date_default_timezone_set('Asia/Dhaka');
+        $msg = ["error" => "<span class='h4'>Nice try &#129315; !</span>".date('Y-m-d H:i:s')];
+        return json_encode($msg);
       }
 
       if(date('Y-m-d H:i:s') < $start_time)
       {
-        return 'Event\'s not started yet!';
+        $msg = ["error" => "<span class='h3'>Nice try &#129315; !</span>"];
+        return json_encode($msg);
       }
       
       $auction = Auction::findOrFail($request->aid);

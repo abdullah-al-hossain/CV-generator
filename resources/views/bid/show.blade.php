@@ -37,9 +37,9 @@ p {
       <div class="alert alert-warning h-50">
         <p id="demo" class="my-auto"></p>
       </div>
-      <div class="alert alert-primary h-50 text-center">
-        <h4><b><u>Initial price was</u> :</b><span>{{ $auction->product_init_price }}</span></h4>
-        <h4><u>Last bidded :</u>
+      <div class="alert alert-primary h-50 text-center p-1">
+        <p class="h5"><b><u>Initial price</u> :</b><span>{{ $auction->product_init_price }}</span></p>
+        <p class="h5"><u>Last bidded :</u>
             <span id="bidprice">
               @if($bidded != null)
                 {{ $bidded->latest()->first()->bidding_price }}
@@ -48,7 +48,7 @@ p {
                 No Bid Made
               @endif
             </span>
-        </h4>
+        </p>
       </div>
     </div>
 
