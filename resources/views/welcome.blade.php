@@ -108,7 +108,8 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+              <div style="text-align:center;padding:1em 0;"><iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=large&timezone=Asia%2FDhaka" width="100%" height="140" frameborder="0" seamless></iframe> </div>
+                <div class="title m-b-md">                    
                     <img src="{{ URL::to('/images/ico.png') }}" alt="" height="60"style="width: auto; padding-right: 10px; border-right: 1px solid #000;"><span style="padding-left: 15px;">freeCV@Gen</span>
                 </div>
 
