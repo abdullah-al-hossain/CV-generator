@@ -32,7 +32,7 @@ class CvController extends Controller
       return redirect('/');
     }
 
-    $cvs = Cv::latest()->paginate(1);
+    $cvs = Cv::latest()->paginate(5);
 
     return view('admin.cv.index', compact('cvs'));
   }
