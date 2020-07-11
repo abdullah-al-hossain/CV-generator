@@ -79,9 +79,9 @@ $user_cv = \App\Cv::where('user_id', $uid)->first();
             }
 
             .fa-plus {
-              -webkit-animation:spin 2s linear infinite;
-              -moz-animation:spin 2s linear infinite;
-              animation:spin 2s linear infinite;
+              -webkit-animation:spin 300ms linear infinite;
+              -moz-animation:spin 300ms linear infinite;
+              animation:spin 300ms linear infinite;
             }
 
             @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 })->name('welcome');
 
 Route::resource('cv', 'CvController');
@@ -34,7 +34,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.index')->middleware('
 
 // Pdf creator RouteServiceProvider
 Route::get('/dynamic-pdf/{uid}', 'DynamicPDFController@index')->name('pdf');
-Route::get('/dynamic-pdf/pdf/{uid}', 'DynamicPDFController@pdf')->name('pdf.download');
+Route::get('/dynamic-pdf/pdf/{uid}', 'DynamicPDFController@pdf')->name('cv.download');
 
 // jquery
 Route::get('/application', 'QueryController@index');
