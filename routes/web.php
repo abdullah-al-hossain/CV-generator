@@ -4,6 +4,10 @@ Route::get('/', function () {
   return view('welcome');
 })->name('welcome');
 
+Route::get('/cart', function() {
+  return view('cart');
+})->name('cart');
+
 Route::resource('cv', 'CvController');
 Route::resource('product', 'ProductController');
 Route::resource('auction', 'AuctionController');
