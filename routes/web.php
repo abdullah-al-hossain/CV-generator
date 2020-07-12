@@ -8,6 +8,8 @@ Route::get('/cart', function() {
   return view('cart');
 })->name('cart');
 
+Route::get('/flex', 'FrontendController@flex');
+
 Route::resource('cv', 'CvController');
 Route::resource('product', 'ProductController');
 Route::resource('auction', 'AuctionController');
