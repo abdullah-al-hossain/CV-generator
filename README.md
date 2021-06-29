@@ -40,7 +40,7 @@
 <h1 style="text-align: center;">Project Screenshots :</h1>
 <div style="display:flex; justify-content: center;">
     <div>
-        <a href="https://imgur.com/wRl4FXf"><img src="https://imgur.com/wRl4FXf" style="width: 100%"/></a>
+        <a href="https://i.imgur.com/wRl4FXf.png"><img src="https://i.imgur.com/wRl4FXf.png" style="width: 100%"/></a>
     </div>
     <div>
         <a href="https://imgur.com/wRl4FXf"><img src="https://imgur.com/wRl4FXf" style="width: 100%"/></a>
