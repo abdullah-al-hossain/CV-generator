@@ -27,11 +27,12 @@
 <p>
     <b>Admin</b>
     <br>Username: admin@example.com
-    <br>Password: helloman
-    
-    <br>
+    <br>Password: helloman        
+</p>
+<p>
+<br>
     <b>Users</b>
     <br>Username: dummy@gmail.com
-    <br>Password: helloman
+    <br>Password: helloman    
 </p>
     
