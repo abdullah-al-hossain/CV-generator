@@ -19,7 +19,7 @@
     <li>Open terminal/cmd in the project root directory then run the command <b><code>composer update</code></b></li>
     <li>Change your database credentials in the .env file</li>
     <li>Create new database then import the sql file provided in the root directory 'cv.sql'</li>
-    <li>Run 'php artisan serve' for better experience as we did not move the index.php file from the public directory which shall be done in future.</li>
+    <li>Run <code>php artisan serve</code> for better experience as we did not move the index.php file from the public directory which shall be done in future.</li>
     <li>Finally Enjoy!</li>
 </ul>
 
