@@ -31,7 +31,7 @@
 </p>
 <p>
 <br>
-    <b>Users</b>
+    <b>User</b>
     <br>Username: dummy@gmail.com
     <br>Password: helloman    
 </p>
