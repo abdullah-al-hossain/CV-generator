@@ -47,9 +47,12 @@
     </div>
     <div>
         <a href="https://i.imgur.com/AbAHu2I.png"><img src="https://i.imgur.com/AbAHu2I.png" style="width: 100%"/></a>
-    </div>
-    
-    
+    </div>           
+        
+</div>
+
+
+<div style="display:flex; justify-content: center;">
     <div>
         <a href="https://i.imgur.com/yrWzZtI.png"><img src="https://i.imgur.com/yrWzZtI.png" style="width: 100%"/></a>
     </div>
@@ -58,9 +61,10 @@
     </div>
     <div>
         <a href="https://i.imgur.com/8LJCHMm.png"><img src="https://i.imgur.com/8LJCHMm.png" style="width: 100%"/></a>
-    </div>
-    
-    
+    </div>            
+</div>
+
+<div style="display:flex; justify-content: center;">
     <div>
         <a href="https://i.imgur.com/pgeTTss.png"><img src="https://i.imgur.com/pgeTTss.png" style="width: 100%"/></a>
     </div>
@@ -69,7 +73,10 @@
     </div>
     <div>
         <a href="https://i.imgur.com/Q5oRcBU.png"><img src="https://i.imgur.com/Q5oRcBU.png" style="width: 100%"/></a>
-    </div>        
+    </div>            
+</div>
+
+<div style="display:flex; justify-content: center;">
     <div>
         <a href="https://i.imgur.com/9Ch4hxz.png"><img src="https://i.imgur.com/9Ch4hxz.png" style="width: 100%"/></a>
     </div>
@@ -77,5 +84,4 @@
     <div>
         <a href="https://i.imgur.com/8jnDNaR.png"><img src="https://i.imgur.com/8jnDNaR.png" style="width: 100%"/></a>
     </div>
-        
 </div>
