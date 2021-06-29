@@ -48,7 +48,7 @@ Route::post('/application/post', 'QueryController@store')->name('jquery.post');
 Route::get('/application/fetch', 'QueryController@fetch')->name('jquery.fetch');
 
 
-Route::get('/bid','BidController@index');
+Route::get('/bid','BidController@index')->name('bid.index');
 Route::get('/bid/{id}','BidController@show')->name('bid.show');
 Route::get('/bid-latest','BidController@shownew')->name('bid.shownew');
 Route::get('/show-winner','BidController@show_winner')->name('show.winner');

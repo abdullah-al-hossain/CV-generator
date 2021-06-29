@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2020 at 01:54 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.19
+-- Generation Time: Jun 30, 2021 at 12:38 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cv`
+-- Database: `cvgenerator`
 --
 
 -- --------------------------------------------------------
@@ -50,7 +50,7 @@ INSERT INTO `auctions` (`id`, `product_id`, `product_init_price`, `bid_start`, `
 (7, 6, 1210, '2020-07-08 16:44:00', '2020-07-08 16:46:00', '2020-07-08 10:45:50', '2020-07-08 11:12:30', '2020-07-08 11:12:30'),
 (8, 6, 1200, '2020-07-08 17:00:00', '2020-07-08 17:47:00', '2020-07-08 11:11:01', '2020-07-08 11:12:30', '2020-07-08 11:12:30'),
 (9, 7, 1200, '2020-07-08 05:00:00', '2020-07-08 17:20:00', '2020-07-08 11:18:19', '2020-07-08 11:18:19', NULL),
-(10, 7, 1201, '2020-07-09 00:00:00', '2020-07-09 00:00:00', '2020-07-08 11:48:20', '2020-07-08 11:48:20', NULL);
+(10, 7, 1201, '2020-07-09 00:00:00', '2021-07-08 00:00:00', '2020-07-08 11:48:20', '2021-06-30 11:02:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -72,12 +72,12 @@ CREATE TABLE `bidders` (
 --
 
 INSERT INTO `bidders` (`id`, `auction_id`, `user_id`, `bidding_price`, `created_at`, `updated_at`) VALUES
-(80, 6, 28, 1201, '2020-07-08 10:38:35', '2020-07-08 10:38:35'),
 (81, 6, 32, 1202, '2020-07-08 10:40:26', '2020-07-08 10:40:26'),
 (82, 9, 32, 1201, '2020-07-08 11:19:12', '2020-07-08 11:19:12'),
-(83, 9, 28, 1202, '2020-07-08 11:19:34', '2020-07-08 11:19:34'),
 (84, 9, 32, 1203, '2020-07-08 11:19:48', '2020-07-08 11:19:48'),
-(85, 9, 28, 1204, '2020-07-08 11:19:52', '2020-07-08 11:19:52');
+(86, 10, 32, 1202, '2021-06-30 11:14:29', '2021-06-30 11:14:29'),
+(87, 10, 32, 1203, '2021-06-30 11:14:36', '2021-06-30 11:14:36'),
+(88, 10, 32, 1500, '2021-06-30 11:14:44', '2021-06-30 11:14:44');
 
 -- --------------------------------------------------------
 
@@ -117,8 +117,7 @@ INSERT INTO `cvs` (`id`, `user_id`, `name`, `address`, `email`, `mobile`, `image
 (50, 31, 'Noah', 'Dhaka', 'dummy@gmail.com', '01533609794', '1593864416.png', 'a', '2020-07-04 06:06:56', '2020-07-04 06:06:56'),
 (51, 31, 'Noah', 'Dhaka', 'dummy@gmail.com', '01533609794', '1593864606.png', 'a', '2020-07-04 06:10:06', '2020-07-04 06:10:06'),
 (52, 31, 'Noah', 'Dhaka', 'dummy@gmail.com', '01533609794', '1593864672.png', 'a', '2020-07-04 06:11:12', '2020-07-04 06:11:12'),
-(53, 27, 'Noah', 'Naomohol Buchapul 83/C, Mymensingh', 'u1404111@student.cuet.ac.bd', '01533609794, 01400332371', '1593932484.jpeg', 'Some career objective . . .', '2020-07-05 01:01:24', '2020-07-05 01:01:24'),
-(54, 28, 'Noah', 'Naomohol Buchapul 83/C, Mymensingh', 'u1404111@student.cuet.ac.bd', '01533609794, 01400332371', '1593859240.png', 'To secure a challenging position in a reputable organization to expand my learning, knowledge, and skills. Secure a responsible career opportunity to fully utilize my training and skills, while making a significant contribution to the success of the company.', '2020-07-07 10:04:17', '2020-07-07 10:04:17');
+(53, 27, 'Noah', 'Naomohol Buchapul 83/C, Mymensingh', 'u1404111@student.cuet.ac.bd', '01533609794, 01400332371', '1593932484.jpeg', 'Some career objective . . .', '2020-07-05 01:01:24', '2020-07-05 01:01:24');
 
 -- --------------------------------------------------------
 
@@ -428,10 +427,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `google_id`, `linkedin_id`) VALUES
 (27, 'ABDULLAH AL HOSSAIN 1404111', 'u1404111@student.cuet.ac.bd', 0, NULL, 'eyJpdiI6IjU5cnNDQnkyUWtvaFN1c0hsM0xCNlE9PSIsInZhbHVlIjoiUW1NMGg1R2VrZU5WMVdFS3cxcWNPZz09IiwibWFjIjoiYjA5OTdhNjExZTc1NDU3NTUyYjhkZjBhOTlmNTE4YzczMTdmNjRiZDc0MjI2OTdlZTE5YzIyOTI5MTE4MWUwOCJ9', NULL, '2020-07-04 01:29:23', '2020-07-04 01:29:23', '105899697363933211379', NULL),
-(28, 'Hridoy Khan Hilaali', 'hello2441139abcd@gmail.com', 1, NULL, '$2y$10$yWEV4Hz5knewiYoIgpU4yOdHuANMerlEsZNCGxtBce4b12HwOZfhe', NULL, '2020-07-04 01:39:15', '2020-07-04 01:39:15', NULL, NULL),
-(30, 'Abdullah Al Hossain', 'dummy@gmail.com', 0, NULL, '$2y$10$lKKxgnzFQWSsN8Q1SS.ONuKPxzkUN.OCwJHAS92.0exiMdzVSqBzi', NULL, '2020-07-04 03:43:40', '2020-07-04 03:43:40', NULL, NULL),
+(30, 'Abdullah Al Hossain', 'dummy@gmail.com', 0, NULL, '$2y$10$EHrNdkRjeTPkM5tRNJsj7uEe6T.gJZVdXwbcy5VOzLx4hUk1VqPXq', NULL, '2020-07-04 03:43:40', '2020-07-04 03:43:40', NULL, NULL),
 (31, 'Hassan Jameel', 'hassan@gmail.com', 0, NULL, '$2y$10$lZJ5bYDCQxvh3UuHDayh6.F5mIxojlzhOwX9LnG.DY3hanG4MSDOm', NULL, '2020-07-04 05:50:32', '2020-07-04 05:50:32', NULL, NULL),
-(32, 'Noah Tak', 'hello2441139@gmail.com', 1, NULL, '$2y$10$EHrNdkRjeTPkM5tRNJsj7uEe6T.gJZVdXwbcy5VOzLx4hUk1VqPXq', NULL, '2020-07-06 11:32:53', '2020-07-06 11:32:53', NULL, NULL);
+(32, 'Noah Tak', 'admin@example.com', 1, NULL, '$2y$10$EHrNdkRjeTPkM5tRNJsj7uEe6T.gJZVdXwbcy5VOzLx4hUk1VqPXq', NULL, '2020-07-06 11:32:53', '2020-07-06 11:32:53', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -573,7 +571,7 @@ ALTER TABLE `auctions`
 -- AUTO_INCREMENT for table `bidders`
 --
 ALTER TABLE `bidders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `cvs`
@@ -639,7 +637,7 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `winners`
