@@ -41,9 +41,13 @@ class DynamicPDFController extends Controller
   {
     $customer_data = $this->get_customer_data();
     $userPersonalInfo = Cv::where('user_id', $uid)->first();
-    if(Auth::user()->is_admin == 0 || $userPersonalInfo == null){
-      abort(404);
+
+    if($userPersonalInfo == null){
+      if(Auth::user()->is_admin == 0){
+        abort(404);
+      }
     }
+
     $projInfo = Project::where('user_id', $uid)->get();
     $eduInfo = Education::where('user_id', $uid)->get();
     $skillInfo = Skill::where('user_id', $uid)->get();
