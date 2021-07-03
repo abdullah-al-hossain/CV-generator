@@ -124,10 +124,10 @@ data-bidend="{{ $auction->bid_end }}"
 </div>
 
 <div class="important-urls"
-data-getwinner="{{ route('show.winner') }}"
-data-setwinner="{{ route('bid.winner') }}"
-data-loadbidder="{{route('bid.shownew')}}"
-data-setnewbidder="{{ route('bid.new') }}"
+    data-getwinner="{{ route('show.winner') }}"
+    data-setwinner="{{ route('bid.winner') }}"
+    data-loadbidder="{{route('bid.shownew')}}"
+    data-setnewbidder="{{ route('bid.new') }}"
 >
 
 </div>
