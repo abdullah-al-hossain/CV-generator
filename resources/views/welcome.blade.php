@@ -153,7 +153,7 @@ $user_cv = \App\Cv::where('user_id', $uid)->first();
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     Edit CV
                   </a>
-                  <a href="{{ route('cv.show', ['cv' => $uid]) }}" style="border: 1px solid #ccc; border-radius: 3px;">
+                  <a href="{{ route('bid.index') }}" style="border: 1px solid #ccc; border-radius: 3px;">
                     <i class="fa fa-eye" aria-hidden="true"></i>
                     View Auctions
                   </a>
