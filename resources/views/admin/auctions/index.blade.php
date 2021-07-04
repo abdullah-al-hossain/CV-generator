@@ -19,7 +19,7 @@
         <th data-breakpoints="">Start time</th>
         <th data-breakpoints="">End time</th>
         <th data-breakpoints="">Actions</th>
-      </tr>
+      </tr> 
     </thead>
     <tbody>
       @foreach($auctions as $auction)
@@ -28,8 +28,17 @@
         <td>{{ $auction->product->name }}</td>
         <td><img src='<?php echo "images/products/".$auction->product->image; ?>' alt="Product_image" width="100" class="img-thumbnail"></td>
         <td>{{ $auction->product_init_price }}</td>
+        @if($auction->bidders->isEmpty() == false)
         <td>{{ $auction->bidders->max('bidding_price') }}</td>
-        <td>{{ $auction->winner->bidder->user->name }}</td>
+          @isset($auction->winner)
+            <td>{{ $auction->winner->bidder->user->name }}</td>
+          @else
+            <td>N/A</td>
+          @endisset
+        @else
+        <td>N/A</td>
+        <td>N/A</td>
+        @endif
         <td>{{ $auction->auctionStartDate() }}</td>
         <td>{{ $auction->auctionEndDate() }}</td>
         <td class="flex">

@@ -11,9 +11,9 @@
         <div class="card-body">          
 
           @foreach($auctions as $auction)
-          <p>
+          <p class="border-bottom pb-3">
             <a href="{{route('bid.show', [ 'id' => $auction->id ])}}">
-              <img src="{{ asset('images/images.jfif') }}" alt="image" width="40">
+              <img src="{{ asset('images/images.jfif') }}" class="px-2" alt="image" width="40">
               {{ $auction->product->name }}
               ({{ Carbon\Carbon::parse($auction->bid_start)->diffForHumans() }})
             </a>

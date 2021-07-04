@@ -118,8 +118,8 @@ p.demo {
 </div>
 
 <div class="bidding-info d-none"
-data-bidstart="{{ $auction->bid_start }}"
-data-bidend="{{ $auction->bid_end }}"
+    data-bidstart="{{ $auction->bid_start }}"
+    data-bidend="{{ $auction->bid_end }}"
 >
 </div>
 
